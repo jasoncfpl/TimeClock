@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TimeClock</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="str_addclock">添加闹钟</string>
+</resources>
