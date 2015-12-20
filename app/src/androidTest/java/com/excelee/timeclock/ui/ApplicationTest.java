@@ -1,4 +1,4 @@
-package com.excelee.timeclock.timeclock;
+package com.excelee.timeclock.ui;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

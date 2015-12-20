@@ -1,11 +1,9 @@
-package com.excelee.timeclock.timeclock;
+package com.excelee.timeclock.ui.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -42,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Log.i("TAG","Click !!!");
-            startActivity(new Intent(MainActivity.this,AddClockActivity.class));
+            startActivity(new Intent(MainActivity.this,ClockActivity.class));
             finish();
         }
     }

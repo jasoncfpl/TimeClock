@@ -12,6 +12,6 @@
         android:id="@+id/mainactivity_btn_addclock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/str_addclock"/>
+        android:text="@string/str_main_addClock"/>
 
 </RelativeLayout>
