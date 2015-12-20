@@ -16,7 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClockActivity" ></activity>
+        <activity android:name=".ClockActivity" />
+        <activity
+            android:name=".RingActivity"
+            android:label="@string/title_activity_ring" >
+        </activity>
+        <receiver android:name="com.excelee.timeclock.ui.receiver.AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ALARM_BROADCAST"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
