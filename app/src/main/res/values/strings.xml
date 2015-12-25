@@ -23,4 +23,6 @@
 
     <!-- RingActivity -->
     <string name="str_ring_ring">ring ring ring!!</string>
+    <string name="str_ring_stop">关闭闹钟</string>
+    <string name="str_ring_again">10分钟后再响</string>
 </resources>

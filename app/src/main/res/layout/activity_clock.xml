@@ -6,11 +6,19 @@
     <include
         android:id="@+id/clock_title" layout="@layout/title_clock"></include>
     <!-- TimePicker 时间选择器-->
+    <TextView
+        android:id="@+id/clock_tv_settingtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@id/clock_title"/>
     <TimePicker
         android:id="@+id/clock_timepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/clock_title"
+        android:layout_below="@id/clock_tv_settingtime"
         android:timePickerMode="spinner"></TimePicker>
     <TableLayout
         android:layout_width="match_parent"

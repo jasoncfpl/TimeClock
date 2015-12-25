@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.excelee.timeclock.ui.R;
 import com.excelee.timeclock.ui.receiver.AlarmReceiver;
 
 import java.util.Calendar;
@@ -31,6 +33,8 @@ public class ClockActivity extends Activity{
     private Button titleLeftBtn;
     //确定按钮
     private Button titleRightBtn;
+
+    private TextView settingTimeTv;
     //按钮点击事件监听
     private MyOnClickListener myOnClickListener;
     //时间选择器监听
@@ -62,6 +66,7 @@ public class ClockActivity extends Activity{
         mTimePicker = (TimePicker) findViewById(R.id.clock_timepicker);
         mTimePicker.setIs24HourView(true);
 
+        settingTimeTv = (TextView) findViewById(R.id.clock_tv_settingtime);
 
         myOnTimeChangeListener = new MyOnTimeChangeListener();
         mTimePicker.setOnTimeChangedListener(new MyOnTimeChangeListener());
@@ -77,8 +82,11 @@ public class ClockActivity extends Activity{
     public void initData(){
 
         mCalendar = Calendar.getInstance();
-        mHour = mCalendar.get(Calendar.HOUR);
+        mHour = mCalendar.get(Calendar.HOUR_OF_DAY);
         mMinute = mCalendar.get(Calendar.MINUTE);
+        //设置选中的时间
+        settingTimeTv.setText(mHour+":"+mMinute);
+        Log.i("TAG","当前时间 ： "+mHour + " : "+ mMinute);
     }
 
     /**
@@ -88,17 +96,12 @@ public class ClockActivity extends Activity{
      */
     public void setAlarmTime(int hour,int minute){
 
-        mCalendar.setTimeInMillis(System.currentTimeMillis());
-        mCalendar.set(Calendar.HOUR_OF_DAY,hour);
-        mCalendar.set(Calendar.MINUTE,minute);
-        mCalendar.set(Calendar.SECOND,0);
-        mCalendar.set(Calendar.MILLISECOND, 0);
-        Intent intent = new Intent(this,AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        mAlarmManager.set(AlarmManager.RTC_WAKEUP,
-                mCalendar.getTimeInMillis(),
-                pendingIntent);
-//        mAlarmManager.set();
+        mHour = hour;
+        mMinute = minute;
+        //TextView显示当前选中的时间
+        settingTimeTv.setText(hour + ":" + minute);
+        Log.i("TAG", "Timepicker ： " + hour + " : " + minute);
+
     }
 
     class MyOnClickListener implements View.OnClickListener{
@@ -112,16 +115,44 @@ public class ClockActivity extends Activity{
                     break;
                 //确定按钮
                 case R.id.clock_titlebtn_right :
+                    //添加闹钟
+                    addClock();
                     break;
             }
         }
     }
+
+    /**
+     * 添加闹钟
+     */
+    public void addClock(){
+
+        mCalendar.setTimeInMillis(System.currentTimeMillis());
+        mCalendar.set(Calendar.HOUR_OF_DAY, mHour);
+        mCalendar.set(Calendar.MINUTE, mMinute);
+        mCalendar.set(Calendar.SECOND, 0);
+        mCalendar.set(Calendar.MILLISECOND, 0);
+
+
+        Intent intent = new Intent(this,AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        mAlarmManager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(),
+                pendingIntent);
+        Log.i("TAG","clock setting success");
+
+        Intent mIntent = new Intent(this,MainActivity.class);
+        startActivity(mIntent);
+        finish();
+//        mAlarmManager.set();
+    }
+
+
     class MyOnTimeChangeListener implements TimePicker.OnTimeChangedListener{
         @Override
         public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+            Log.i("TAG", "MyOnTimeChangeListener : hour = " + hourOfDay + "  minite = " + minute);
             //设置闹钟
-            setAlarmTime(hourOfDay,minute);
-            Log.i("TAG","MyOnTimeChangeListener : hour = "+hourOfDay +"  minite = "+minute);
+            setAlarmTime(hourOfDay, minute);
         }
     }
 }

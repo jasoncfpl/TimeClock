@@ -2,10 +2,9 @@ package com.excelee.timeclock.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.excelee.timeclock.ui.activity.R;
+import com.excelee.timeclock.ui.R;
+
 
 public class RingActivity extends AppCompatActivity {
 
