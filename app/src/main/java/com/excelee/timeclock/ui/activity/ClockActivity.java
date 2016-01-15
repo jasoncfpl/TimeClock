@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.excelee.timeclock.bean.Clock;
+import com.excelee.timeclock.db.DataBaseManager;
 import com.excelee.timeclock.ui.R;
 import com.excelee.timeclock.ui.receiver.AlarmReceiver;
 
@@ -133,17 +135,36 @@ public class ClockActivity extends Activity{
         mCalendar.set(Calendar.SECOND, 0);
         mCalendar.set(Calendar.MILLISECOND, 0);
 
+        saveClock();
 
         Intent intent = new Intent(this,AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         mAlarmManager.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(),
                 pendingIntent);
-        Log.i("TAG","clock setting success");
+        Log.i("TAG","clock setting success : "+ mCalendar.getTimeInMillis());
+        Log.i("TAG","clock setting time : "+ mCalendar.getTime());
+
+
 
         Intent mIntent = new Intent(this,MainActivity.class);
         startActivity(mIntent);
         finish();
 //        mAlarmManager.set();
+    }
+
+    /**
+     * 保存闹钟
+     */
+    public void saveClock(){
+
+        Clock clock = new Clock();
+        clock.setRepeatCounts(1);
+        clock.setRing("ring ring");
+        clock.setRemark("闹钟");
+        clock.setClockTime(mCalendar.getTime());
+        DataBaseManager dbManager = DataBaseManager.getInstance(this);
+        dbManager.insertClock(clock);
+
     }
 
 

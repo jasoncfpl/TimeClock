@@ -7,13 +7,22 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/mainActivity_tv_clock"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/mainactivity_btn_addclock"
+        android:id="@+id/mainActivity_btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/str_main_addClock"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mainActivity_recyclerview"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        />
 
 </LinearLayout>

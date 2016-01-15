@@ -3,6 +3,7 @@ package com.excelee.timeclock.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * 数据库帮助类
@@ -10,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DataBaseHelper extends SQLiteOpenHelper{
     //数据库名称
-    private static final String DATABASE_NAME = "timeclock.db";
+    private static final String DATABASE_NAME = "time_clock.db";
     private static final int DATABASE_VERSION = 1;
     //表名称
     public static final String CLOCK_TABLE_NAME = "clockTbl";
@@ -31,6 +32,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_CLOCK_TABLE);
+        Log.i("TAG","db : create db success");
     }
 
     @Override

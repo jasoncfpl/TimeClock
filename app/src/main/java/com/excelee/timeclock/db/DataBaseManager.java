@@ -20,10 +20,23 @@ import java.util.List;
  */
 public class DataBaseManager {
 
-    private final DataBaseHelper dbHelper;
+    private static DataBaseHelper dbHelper = null;
+    private static DataBaseManager dataBaseManager = null;
 
-    public DataBaseManager(Context context) {
+    /**
+     * 初始化
+     * @param context
+     */
+    private DataBaseManager(Context context) {
+
         dbHelper = new DataBaseHelper(context);
+    }
+
+    public static DataBaseManager getInstance(Context context){
+        if (dataBaseManager == null)
+            Log.i("TAG","DataBaseManager INIT");
+            dataBaseManager = new DataBaseManager(context);
+        return dataBaseManager;
     }
 
     /**
@@ -31,16 +44,16 @@ public class DataBaseManager {
      */
     public void insertClock(Clock clock){
 
-        SQLiteDatabase sqlite = dbHelper.getWritableDatabase();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
         String clockTime = simpleDateFormat.format(clock.getClockTime());
         ContentValues mContentValues = new ContentValues();
-        mContentValues.put("repeatCounts",clock.getRepeatCounts());
-        mContentValues.put("ring",clock.getRing());
+        mContentValues.put("repeat_counts",clock.getRepeatCounts());
+        mContentValues.put("clock_ring",clock.getRing());
         mContentValues.put("remark",clock.getRemark());
-        mContentValues.put("clockTime",clockTime);
-
-        sqlite.insert(DataBaseHelper.CLOCK_TABLE_NAME,null,mContentValues);
+        mContentValues.put("clock_time",clockTime);
+        Log.i("TAG","db insert");
+        db.insert(DataBaseHelper.CLOCK_TABLE_NAME,null,mContentValues);
 
     }
 
@@ -71,7 +84,8 @@ public class DataBaseManager {
         SQLiteDatabase sqlite = dbHelper.getWritableDatabase();
         List<Clock> clocks = new ArrayList<Clock>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
-        Cursor cursor = sqlite.query(DataBaseHelper.CLOCK_TABLE_NAME,null,null,null,null,null,null);
+        Cursor cursor = sqlite.query(DataBaseHelper.CLOCK_TABLE_NAME,new String[]{"_id","repeat_counts","clock_ring",
+                "remark","clock_time"},null,null,null,null,null);
         while (cursor.moveToNext()){
             Clock clock = new Clock();
             int _id = cursor.getInt(cursor.getColumnIndex("_id"));
