@@ -3,10 +3,12 @@ package com.excelee.timeclock.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     /** 添加闹钟按钮 **/
-    Button btn_addClock;
-    TextView clockTv;
+    FloatingActionButton btn_addClock;
     RecyclerView mRecyclerView;
 
     ClockAdapter clockAdapter = null;
@@ -36,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         initView();
+        setListener();
         initData();
 
     }
@@ -47,15 +48,25 @@ public class MainActivity extends AppCompatActivity {
      */
     public void initView(){
 
-        btn_addClock = (Button) findViewById(R.id.mainActivity_btn_add);
-        clockTv = (TextView) findViewById(R.id.mainActivity_tv_clock);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        btn_addClock = (FloatingActionButton) findViewById(R.id.mainActivity_btn_add);
         mRecyclerView = (RecyclerView) findViewById(R.id.mainActivity_recyclerview);
 
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
-
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
         btn_addClock.setOnClickListener(new MyClickListener());
+
+//        getSupportActionBar().setBackgroundDrawable();
+
+    }
+
+    /**
+     * 设置点击事件
+     */
+    public void setListener(){
 
     }
 
@@ -70,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         if (clocks !=null && clocks.size() > 0){
             Date clockDate = clocks.get(0).getClockTime();
             SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
-            clockTv.setText(sdf.format(clockDate));
         }
 
         clockAdapter = new ClockAdapter(this,clocks);
@@ -89,4 +99,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
     }
+
+
 }
