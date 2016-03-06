@@ -13,6 +13,7 @@ import android.widget.TimePicker;
 
 import com.excelee.timeclock.bean.Clock;
 import com.excelee.timeclock.db.DataBaseManager;
+import com.excelee.timeclock.ui.BaseActivity;
 import com.excelee.timeclock.ui.R;
 import com.excelee.timeclock.ui.receiver.AlarmReceiver;
 
@@ -21,7 +22,7 @@ import java.util.Calendar;
 /**
  * Created by lijia on 15/12/17.
  */
-public class ClockActivity extends Activity{
+public class ClockActivity extends BaseActivity{
     //广播接收器action
     private static final String ALARM_ACTION = "android.intent.action.ALARM_BROADCAST";
     //时间选择器
@@ -51,14 +52,12 @@ public class ClockActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clock);
 
-        initView();
+        initContentView();
         initData();
     }
 
-    /**
-     * 初始化view
-     */
-    public void initView(){
+    @Override
+    protected void initContentView() {
 
         mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 

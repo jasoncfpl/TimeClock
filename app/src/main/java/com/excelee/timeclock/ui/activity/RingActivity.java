@@ -10,12 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.excelee.timeclock.ui.BaseActivity;
 import com.excelee.timeclock.ui.R;
 
 import java.io.IOException;
 
 
-public class RingActivity extends AppCompatActivity {
+public class RingActivity extends BaseActivity {
 
     Button stopClockBtn;
     //点击事件
@@ -31,10 +32,12 @@ public class RingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ring);
 
-        initView();
+        initContentView();
     }
 
-    public void initView(){
+
+    @Override
+    protected void initContentView() {
 
         stopClockBtn = (Button) findViewById(R.id.ring_btn_stopClock);
 

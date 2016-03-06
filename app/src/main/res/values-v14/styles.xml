@@ -5,12 +5,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="TimeAppThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="colorPrimaryDark">@color/color_colorPrimary</item>
-        <item name="android:textColorPrimary">@color/color_textColorPrimary</item>
-    </style>
 
 
 </resources>

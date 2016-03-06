@@ -3,6 +3,7 @@ package com.excelee.timeclock.ui.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.excelee.timeclock.bean.Clock;
 import com.excelee.timeclock.db.DataBaseManager;
+import com.excelee.timeclock.ui.BaseActivity;
 import com.excelee.timeclock.ui.R;
 import com.excelee.timeclock.ui.adapter.ClockAdapter;
 
@@ -24,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     /** 添加闹钟按钮 **/
     FloatingActionButton btn_addClock;
@@ -32,23 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
     ClockAdapter clockAdapter = null;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        initView();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        initContentView();
         setListener();
         initData();
 
     }
 
-    /**
-     * 初始化view
-     */
-    public void initView(){
+    @Override
+    protected void initContentView() {
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolsbar);
         setSupportActionBar(toolbar);
 
         btn_addClock = (FloatingActionButton) findViewById(R.id.mainActivity_btn_add);
@@ -60,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         btn_addClock.setOnClickListener(new MyClickListener());
 
 //        getSupportActionBar().setBackgroundDrawable();
-
     }
+
 
     /**
      * 设置点击事件
