@@ -20,8 +20,11 @@ import com.excelee.timeclock.ui.receiver.AlarmReceiver;
 import java.util.Calendar;
 
 /**
- * Created by lijia on 15/12/17.
- */
+ *  Author : chia(cnexcelee@gmail.com)
+ *  Time : 2016/3/15  18:18
+ *  FileName : ClockActivity.java
+ *  Desc : 添加闹钟界面
+*/
 public class ClockActivity extends BaseActivity{
     //广播接收器action
     private static final String ALARM_ACTION = "android.intent.action.ALARM_BROADCAST";
