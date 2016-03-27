@@ -26,6 +26,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *  Author : chia(cnexcelee@gmail.com)
+ *  Time : 2016/3/15  18:17
+ *  FileName : MainActivity.java
+ *  Desc : 主界面
+*/
 public class MainActivity extends BaseActivity {
 
     /** 添加闹钟按钮 **/

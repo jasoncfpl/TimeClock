@@ -15,7 +15,12 @@ import com.excelee.timeclock.ui.R;
 
 import java.io.IOException;
 
-
+/**
+ *  Author : chia(cnexcelee@gmail.com)
+ *  Time : 2016/3/15  18:13
+ *  FileName : RingActivity.java
+ *  Desc : 响铃activity
+*/  
 public class RingActivity extends BaseActivity {
 
     Button stopClockBtn;
