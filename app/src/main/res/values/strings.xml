@@ -4,8 +4,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-
+    <!-- MainActivity -->
     <string name="str_main_addClock">添加闹钟</string>
+    <string name="str_main_myClock">我的闹钟</string>
     
     <!-- ClockActivity  -->
     <!--  Title -->

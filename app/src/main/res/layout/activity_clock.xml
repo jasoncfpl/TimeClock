@@ -3,8 +3,8 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/clock_title" layout="@layout/title_clock"></include>
+    <include layout="@layout/tools_toolbar"
+        android:id="@+id/clock_title"/>
     <!-- TimePicker 时间选择器-->
     <TextView
         android:id="@+id/clock_tv_settingtime"
@@ -27,6 +27,7 @@
         android:layout_marginLeft="10dp">
         <TableRow>
             <LinearLayout
+                android:id="@+id/clock_repeat_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:orientation="vertical"
@@ -36,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_repeat"/>
                 <TextView
+                    android:id="@+id/clock_repeat_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_repeat_ontTime"/>
@@ -43,6 +45,7 @@
         </TableRow>
         <TableRow>
             <LinearLayout
+                android:id="@+id/clock_ring_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:orientation="vertical"
@@ -52,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_ring"/>
                 <TextView
+                    android:id="@+id/clock_ring_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_ring_default"/>
@@ -60,6 +64,7 @@
         </TableRow>
         <TableRow>
             <LinearLayout
+                android:id="@+id/clock_remark_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:orientation="vertical"
@@ -69,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_remark"/>
                 <TextView
+                    android:id="@+id/clock_remark_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_clock_remark_default"/>
@@ -77,5 +83,35 @@
         </TableRow>
     </TableLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/clock_left_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/color_fff"
+            android:background="@drawable/button_selector"
+            android:text="@string/str_clock_title_cancel"/>
+
+        <Button
+            android:id="@+id/clock_right_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/color_fff"
+            android:background="@drawable/button_selector"
+            android:text="@string/str_clock_title_sure"/>
+
+
+    </LinearLayout>
 </RelativeLayout>

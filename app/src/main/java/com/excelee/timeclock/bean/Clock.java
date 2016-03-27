@@ -18,6 +18,8 @@ public class Clock {
     //响铃时间
     private Date clockTime;
 
+    private long isUsing;
+
     public int get_id() {
         return _id;
     }
@@ -56,5 +58,13 @@ public class Clock {
 
     public void setClockTime(Date clockTime) {
         this.clockTime = clockTime;
+    }
+
+    public long getIsUsing() {
+        return isUsing;
+    }
+
+    public void setIsUsing(long isUsing) {
+        this.isUsing = isUsing;
     }
 }

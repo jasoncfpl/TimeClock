@@ -11,4 +11,5 @@
         <item name="colorPrimaryDark">@color/color_colorPrimary</item>
         <item name="android:textColorPrimary">@color/color_textColorPrimary</item>
     </style>
+
 </resources>

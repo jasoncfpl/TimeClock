@@ -40,6 +40,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        Log.i("TAG", " 路径 ： " + getDatabasePath("time_clock.db"));
+        getDatabasePath("time_clock.db");
         initContentView();
         setListener();
         initData();

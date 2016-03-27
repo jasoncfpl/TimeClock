@@ -1,13 +1,14 @@
 package com.excelee.timeclock.ui.activity;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -27,15 +28,23 @@ public class ClockActivity extends BaseActivity{
     private static final String ALARM_ACTION = "android.intent.action.ALARM_BROADCAST";
     //时间选择器
     TimePicker mTimePicker;
-
+    //重复次数
+    TextView repeatTv;
+    LinearLayout repeatLayout;
+    //响铃铃声
+    TextView ringTv;
+    LinearLayout ringLayout;
+    //闹钟备注
+    TextView remarkTv;
+    LinearLayout remarkLayout;
     //日历
     Calendar mCalendar;
     private int mHour;
     private int mMinute;
     //取消按钮
-    private Button titleLeftBtn;
+    private Button leftBtn;
     //确定按钮
-    private Button titleRightBtn;
+    private Button rightBtn;
 
     private TextView settingTimeTv;
     //按钮点击事件监听
@@ -59,13 +68,23 @@ public class ClockActivity extends BaseActivity{
     @Override
     protected void initContentView() {
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.clock_title);
+        toolbar.setTitle(R.string.str_clock_title_setting);
+
         mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        titleLeftBtn = (Button) findViewById(R.id.clock_titlebtn_left);
-        titleRightBtn = (Button) findViewById(R.id.clock_titlebtn_right);
+        leftBtn = (Button) findViewById(R.id.clock_left_btn);
+        rightBtn = (Button) findViewById(R.id.clock_right_btn);
 
         mTimePicker = (TimePicker) findViewById(R.id.clock_timepicker);
         mTimePicker.setIs24HourView(true);
+
+        repeatTv = (TextView) findViewById(R.id.clock_repeat_tv);
+        repeatLayout = (LinearLayout) findViewById(R.id.clock_repeat_layout);
+        ringTv = (TextView) findViewById(R.id.clock_ring_tv);
+        ringLayout = (LinearLayout) findViewById(R.id.clock_ring_layout);
+        remarkTv = (TextView) findViewById(R.id.clock_remark_tv);
+        remarkLayout = (LinearLayout) findViewById(R.id.clock_repeat_layout);
 
         settingTimeTv = (TextView) findViewById(R.id.clock_tv_settingtime);
 
@@ -73,8 +92,11 @@ public class ClockActivity extends BaseActivity{
         mTimePicker.setOnTimeChangedListener(new MyOnTimeChangeListener());
 
         myOnClickListener = new MyOnClickListener();
-        titleLeftBtn.setOnClickListener(myOnClickListener);
-        titleRightBtn.setOnClickListener(myOnClickListener);
+        leftBtn.setOnClickListener(myOnClickListener);
+        rightBtn.setOnClickListener(myOnClickListener);
+        repeatLayout.setOnClickListener(myOnClickListener);
+        ringLayout.setOnClickListener(myOnClickListener);
+        remarkLayout.setOnClickListener(myOnClickListener);
     }
 
     /**
@@ -112,12 +134,23 @@ public class ClockActivity extends BaseActivity{
 
             switch (v.getId()){
                 //取消按钮
-                case R.id.clock_titlebtn_left :
+                case R.id.clock_left_btn :
                     break;
                 //确定按钮
-                case R.id.clock_titlebtn_right :
+                case R.id.clock_right_btn :
                     //添加闹钟
                     addClock();
+                    break;
+                //重复次数
+                case R.id.clock_repeat_layout :
+                    break;
+                //设置铃声
+                case R.id.clock_ring_layout :
+                    break;
+                //备注
+                case R.id.clock_remark_layout :
+                    break;
+                default:
                     break;
             }
         }
@@ -161,6 +194,7 @@ public class ClockActivity extends BaseActivity{
         clock.setRing("ring ring");
         clock.setRemark("闹钟");
         clock.setClockTime(mCalendar.getTime());
+        clock.setIsUsing(1);
         DataBaseManager dbManager = DataBaseManager.getInstance(this);
         dbManager.insertClock(clock);
 

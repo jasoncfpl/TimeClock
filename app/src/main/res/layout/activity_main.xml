@@ -8,9 +8,18 @@
 
     <include layout="@layout/tools_toolbar" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:text="@string/str_main_myClock"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/mainActivity_btn_add"

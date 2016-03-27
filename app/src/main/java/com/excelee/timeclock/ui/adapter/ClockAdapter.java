@@ -43,7 +43,8 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.ClockHolder>
     public void onBindViewHolder(ClockHolder holder, int position) {
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
         String clockDate = sdf.format(clocks.get(position).getClockTime());
-        holder.tv.setText(clockDate);
+        holder.timeTv.setText(clockDate);
+        holder.remarkTv.setText(clocks.get(position).getRemark());
     }
 
     @Override
@@ -55,11 +56,14 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.ClockHolder>
      * ViewHolder
      */
     class ClockHolder extends RecyclerView.ViewHolder{
-
-        TextView tv;
+        //闹钟时间
+        TextView timeTv;
+        //闹钟备注
+        TextView remarkTv;
         public ClockHolder(View itemView) {
             super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.adapter_clocklist_tv);
+            timeTv = (TextView) itemView.findViewById(R.id.adapter_clocklist_tv);
+            remarkTv = (TextView) itemView.findViewById(R.id.adapter_clocklist_remark);
         }
     }
 }

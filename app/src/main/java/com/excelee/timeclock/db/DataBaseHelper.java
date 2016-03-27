@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
+
 /**
  * 数据库帮助类
  * Created by lijia on 15/12/20.
@@ -22,11 +24,18 @@ public class DataBaseHelper extends SQLiteOpenHelper{
             + "repeat_counts integer DEFAULT 1 ,"
             + "clock_ring varchar(100) ,"
             + "remark varchar(100) ,"
-            + "clock_time varchar(20) "
+            + "clock_time varchar(20) ,"
+            + "is_using long(5) "
             +")";
 
     public DataBaseHelper(Context context) {
+
         super(context, DATABASE_NAME, null , DATABASE_VERSION);
+        File file = new File(DATABASE_NAME);
+        if(file.exists()){
+            Log.i("TAG","path : " + file.getAbsolutePath());
+        }
+
     }
 
     @Override

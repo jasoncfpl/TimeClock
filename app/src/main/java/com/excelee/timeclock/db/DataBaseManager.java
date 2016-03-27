@@ -52,6 +52,7 @@ public class DataBaseManager {
         mContentValues.put("clock_ring",clock.getRing());
         mContentValues.put("remark",clock.getRemark());
         mContentValues.put("clock_time",clockTime);
+        mContentValues.put("isUsing",clock.getIsUsing());
         Log.i("TAG","db insert");
         db.insert(DataBaseHelper.CLOCK_TABLE_NAME,null,mContentValues);
 
@@ -93,6 +94,7 @@ public class DataBaseManager {
             String ring = cursor.getString(cursor.getColumnIndex("clock_ring"));
             String remark = cursor.getString(cursor.getColumnIndex("remark"));
             String clockTimeStr = cursor.getString(cursor.getColumnIndex("clock_time"));
+            long isUsing = cursor.getLong(cursor.getColumnIndex("is_using"));
             Date clockTime = null;
             try {
                 clockTime = simpleDateFormat.parse(clockTimeStr);
@@ -105,6 +107,7 @@ public class DataBaseManager {
             clock.setRing(ring);
             clock.setRemark(remark);
             clock.setClockTime(clockTime);
+            clock.setIsUsing(isUsing);
             clocks.add(clock);
         }
         return clocks;
